@@ -1,0 +1,28 @@
+README
+======
+
+What is Cloud Zoom Joomla Plugin?
+---------------------------------
+
+Cloud Zoom Joomla Plugin is a content plugin for Joomla 1.5.
+This plugin allows you to use the Cloud Zoom free jQuery image zoom plugin
+of Professor Cloud (www.professorcloud.com) in your joomla website in a very
+simple way.
+
+Requirements
+------------
+
+Cloud Zoom Joomla Plugin V0.1 is tested only on Joomla 1.5 
+
+Documentation
+-------------
+Install the plugin from a zip file using the joomla installer. Then you  
+can embed a zoomable image using the following syntax in your article:
+{cloudzoom | img='path/to/bigimage.jpg' | title='title of image' | ref='Cloud Zoom Parameters'}
+
+Example:
+{cloudzoom | img='/images/stories/monster.jpg' | title='Ducati monster' | rel='adjustX: 10, adjustY:-4'}
+
+IMPORTANT: you need a smaller image with the same name of the big one and with the suffix _small
+in the same directory. Example: if your big image is monster.jpg, you need a smaller image with 
+the name monster_small.jpg in the same directory.
