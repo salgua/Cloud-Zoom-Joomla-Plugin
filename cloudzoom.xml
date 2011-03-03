@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="content">
+<name>Content - Cloud Zoom</name>
+<creationDate>02/02/2011</creationDate>
+<author>Salvatore Guarino</author>
+<authorEmail>info@salgua.com</authorEmail>
+<authorUrl>http://www.salgua.com</authorUrl>
+<copyright>Copyright Salvatore Guarino - info@salgua.com</copyright>
+<license>Licensed under the MIT License</license>
+<version>0.1</version>
+<description>With this plugin you can embed zoomable image in you article, simple using {cloudzoom "path/to/bigimage.jpg" "parameters"}. The filename of the related small image for the magnify effect has to be named with the suffix _small (image_small.jpg) and has to be in the same folder as the big image (image.jpg) </description>
+<files>
+   <filename plugin="cloudzoom">cloudzoom.php</filename>
+   <filename>cloudzoom/index.html</filename>
+   <filename>cloudzoom/css/index.html</filename>
+   <filename>cloudzoom/css/cloud-zoom.css</filename>
+   <filename>cloudzoom/js/index.html</filename>
+   <filename>cloudzoom/js/jquery-1.3.2.min.js</filename>
+   <filename>cloudzoom/js/cloud-zoom.1.0.2.js</filename>
+</files>
+<params>
+	<param name="incjquery" type="list" default="yes" label="Include jQuery" description="Use this plugin to include the jQuery javascript file. Do not set this to 'DO NOT INCLUDE' unless you are including jQuery elsewhere - for instance in another extension or in your template.">
+            <option value="yes">Include jQuery javascript file</option>
+            <option value="no" >Do not include jQuery javascript file</option>
+        </param>
+   </params>
+</install>
