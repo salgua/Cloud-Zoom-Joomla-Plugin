@@ -8,7 +8,7 @@
 <copyright>Copyright Salvatore Guarino - info@salgua.com</copyright>
 <license>Licensed under the MIT License</license>
 <version>0.1</version>
-<description>With this plugin you can embed zoomable image in you article, simple using {cloudzoom "path/to/bigimage.jpg" "parameters"}. The filename of the related small image for the magnify effect has to be named with the suffix _small (image_small.jpg) and has to be in the same folder as the big image (image.jpg) </description>
+<description>With this plugin you can embed zoomable image in you article, simple using {cloudzoom | img='path/to/bigimage.jpg' | title='image title' | rel='rel parameter'}. The filename of the related small image for the magnify effect has to be named with the suffix _small (image_small.jpg) and has to be in the same folder as the big image (image.jpg) </description>
 <files>
    <filename plugin="cloudzoom">cloudzoom.php</filename>
    <filename>cloudzoom/index.html</filename>

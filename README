@@ -18,7 +18,7 @@ Documentation
 -------------
 Install the plugin from a zip file using the joomla installer. Then you  
 can embed a zoomable image using the following syntax in your article:
-{cloudzoom | img='path/to/bigimage.jpg' | title='title of image' | ref='Cloud Zoom Parameters'}
+{cloudzoom | img='path/to/bigimage.jpg' | title='title of image' | rel='Cloud Zoom Parameters'}
 
 Example:
 {cloudzoom | img='/images/stories/monster.jpg' | title='Ducati monster' | rel='adjustX: 10, adjustY:-4'}
