@@ -96,7 +96,7 @@ class plgContentCloudzoom extends JPlugin {
 			if (trim($tag)!="cloudzoom") {
 				$pos=strpos(trim($tag), "=");
 				$parameter=substr(trim($tag), 0, $pos);
-				$value=str_replace("'", "", substr(trim($tag), $pos + 1));
+				$value=str_replace(array("'"), "", substr(trim($tag), $pos + 1));
 				$params[$parameter]=$value;
 			}
 		}
