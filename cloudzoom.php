@@ -1,15 +1,20 @@
 <?php
 /**
- * @version     cloudzoom.php 0.1
- * @copyright   Copyright 2011 - Salvatore Guarino - info@salgua.com
- * @license     Licensed under the MIT License
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR 
- * THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *  Cloud Zoom Joomla Plugin
+ *  Copyright 2011 - Salvatore Guarino - info@salgua.com
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+ * 
  */
 
 // Check to ensure this file is included in Joomla!
@@ -20,6 +25,7 @@ jimport( 'joomla.plugin.plugin' );
 class plgContentCloudzoom extends JPlugin {
 	//parameter
 	private $incjquery;
+	private $noconflict;
 	private $rel; //rel tag
 	private $bigimage; //big image
 	private $smallimage; //small image
@@ -48,6 +54,11 @@ class plgContentCloudzoom extends JPlugin {
 		$this->incjquery = (strtolower($pluginParams->get('incjquery', 1)) == 'yes');
 		if ( $this->incjquery ) { 
 			$document->addScript('/plugins/content/cloudzoom/js/jquery-1.3.2.min.js');   
+		}
+		//enable jquery no-conflict mode if enabled
+		$this->noconflict = (strtolower($pluginParams->get('jquerynoconflict', 1)) == '1');
+		if ($this->incjquery && $this->noconflict) {
+			$document->addScript('/plugins/content/cloudzoom/js/no-conflict.js');
 		}
 		//include cloudzoom js library
 		$document->addScript('/plugins/content/cloudzoom/js/cloud-zoom.1.0.2.js'); 
