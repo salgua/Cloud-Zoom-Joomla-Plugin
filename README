@@ -1,10 +1,10 @@
 README
 ======
 
-What is Cloud Zoom Joomla Plugin?
+What is Salgua Cloud Zoom?
 ---------------------------------
 
-Cloud Zoom Joomla Plugin is a content plugin for Joomla 1.5.
+Salgua Cloud Zoom is a content plugin for !Joomla 
 This plugin allows you to use the Cloud Zoom free jQuery image zoom plugin
 of Professor Cloud (www.professorcloud.com) in your joomla website in a very
 simple way.
@@ -12,17 +12,22 @@ simple way.
 Requirements
 ------------
 
-Cloud Zoom Joomla Plugin V0.1 is tested only on Joomla 1.5 
+Cloud Zoom Joomla Plugin V1.0 is tested only on Joomla 1.5 
 
 Documentation
 -------------
 Install the plugin from a zip file using the joomla installer. Then you  
 can embed a zoomable image using the following syntax in your article:
-{cloudzoom | img='path/to/bigimage.jpg' | title='title of image' | rel='Cloud Zoom Parameters'}
+{cloudzoom | img="path/to/bigimage.jpg" | title="title of image" | rel="Cloud Zoom Parameters"}
 
-Example:
-{cloudzoom | img='/images/stories/monster.jpg' | title='Ducati monster' | rel='adjustX: 10, adjustY:-4'}
+Very simple Example:
+{cloudzoom | img="/path/to/your/image.jpg"}
 
-IMPORTANT: you need a smaller image with the same name of the big one and with the suffix _small
-in the same directory. Example: if your big image is monster.jpg, you need a smaller image with 
-the name monster_small.jpg in the same directory.
+More complex Example:
+{cloudzoom | img="/path/to/your/image.jpg" | title="Image title" | width="200" | rel="adjustX: 10, adjustY:-4, tint:'#333333'"}
+
+IMPORTANT: Salgua Cloud Zoom plugin will create an image with suffix "_small" of the specified width. You have to ensure that
+your web server user can write in the directory where you will put the images.
+
+Cloud Zoom Parameters: you can find the instructions to use the Cloud Zoom Parameter 
+visiting the official Cloud Zoom Webiste: http://www.professorcloud.com/mainsite/cloud-zoom-integration.htm

@@ -3,6 +3,7 @@
         <property name="src"   value="."/>
         <property name="test"  value="../joomla15/plugins/content" />
         <fileset dir="${src}" id="allfiles">
+        	<include name="cloudzoom/*" />
         	<include name="cloudzoom/js/*" />
         	<include name="cloudzoom/css/*" />
         </fileset>

@@ -1,6 +1,6 @@
 <?php
 /**
- *  Cloud Zoom Joomla Plugin
+ *  Salgua Cloud Zoom !Joomla Plugin
  *  Copyright 2011 - Salvatore Guarino - info@salgua.com
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -29,9 +29,12 @@ class plgContentCloudzoom extends JPlugin {
 	private $rel; //rel tag
 	private $bigimage; //big image
 	private $smallimage; //small image
+	private $pluginParams;
+	private $idplg;
 	function plgContentCloudzoom(&$subject, $params)
 	{
 		parent::__construct($subject, $params);
+		$this->idplg=0;
 	}
 	
 /**
@@ -50,20 +53,21 @@ class plgContentCloudzoom extends JPlugin {
 		$plugin =& JPluginHelper::getPlugin('content', 'cloudzoom');
     	//read and set the plugin parameters
 		$pluginParams = new JParameter( $plugin->params );
+		$this->pluginParams = $pluginParams;
 		//include jquery library if incjquery is set to true
 		$this->incjquery = (strtolower($pluginParams->get('incjquery', 1)) == 'yes');
 		if ( $this->incjquery ) { 
-			$document->addScript('/plugins/content/cloudzoom/js/jquery-1.3.2.min.js');   
+			$document->addScript(JURI::root(true).'/plugins/content/cloudzoom/js/jquery-1.3.2.min.js');   
 		}
 		//enable jquery no-conflict mode if enabled
 		$this->noconflict = (strtolower($pluginParams->get('jquerynoconflict', 1)) == '1');
 		if ($this->incjquery && $this->noconflict) {
-			$document->addScript('/plugins/content/cloudzoom/js/no-conflict.js');
+			$document->addScript(JURI::root(true).'/plugins/content/cloudzoom/js/no-conflict.js');
 		}
 		//include cloudzoom js library
-		$document->addScript('/plugins/content/cloudzoom/js/cloud-zoom.1.0.2.js'); 
+		$document->addScript(JURI::root(true).'/plugins/content/cloudzoom/js/cloud-zoom.1.0.2.js'); 
 		//include stylesheet
-		$document->addStyleSheet($this->get_plugin_web_path('css/cloud-zoom.css'));
+		$document->addStyleSheet(JURI::root(true).'/plugins/content/cloudzoom/css/cloud-zoom.css');
 		
 		//process the zoomable content
 		$regex = "/{cloudzoom.+?}/";
@@ -90,13 +94,25 @@ class plgContentCloudzoom extends JPlugin {
 				$ext=substr($params['img'], $pos);
 				$params['imgsmall'] = $filename."_small".$ext;
 			}
-			$path=JPATH_PLUGINS;
-			$text = "<a href='".$params['img']."' class='cloud-zoom' 
-						id='zoom1' rel='".$params['rel']."'>
-						<img src='".$params['imgsmall']."' alt='' title='".$params['title']."' />
+			if (!isset($params['width']))
+			{
+				if (intval($this->pluginParams->get('width',1))>1)
+				{
+					$params['width']=$this->pluginParams->get('width',1);
+				} else{
+					$params['width']="150";
+				}
+				
+			}
+						$this->idplg++;
+						$text = "<a href='".$params['img']."' class='cloud-zoom' 
+						id='zoom".$this->idplg."' rel=\"".$params['rel']."\">
+						<img src='".$this->getSmallImage($params['img'],$params['width'])."' alt='' title='".$params['title']."' />
 						</a>";
 			return $text;
 	}
+	
+	
 	
 	/**
 	 * 
@@ -108,52 +124,37 @@ class plgContentCloudzoom extends JPlugin {
 	 * @return string
 	 */
 	function getSmallImage($imgurl, $width) {
+		//includes
+		require_once(JPATH_PLUGINS.DS.'content'.DS.'cloudzoom'.DS.'resizeimg.php');
+		require_once(JPATH_PLUGINS.DS.'content'.DS.'cloudzoom'.DS.'urlparser.php');
+		
+		$up = new UrlParser();
+		$imgpath = $up->url2filepath($imgurl); //retrieve the file path of the image
+		
 		$pos=strrpos($imgurl, "."); //find the last "." before the file extension
 		$filename=substr($imgurl, 0, $pos); //exctract the url without extension
 		$ext=substr($imgurl, $pos); //extract the file extension
 		$imgsmallurl = $filename."_small".$ext; //add the suffix _small to the file name
-		if (file_exists($imgsmallurl))
+		
+		$imgsmallpath = $up->url2filepath($imgsmallurl); //convert the image small url to file path
+		
+		if (file_exists($imgsmallpath))
 		{
-			$imgsize = getimagesize($imgsmallurl);
+			$imgsize = getimagesize($imgsmallpath);
 			if ($imgsize[0]==$width) //check if the existing small image has the same width
 			{
 				return $imgsmallurl; //return the file_small url if the file already exists and it has with the same widht
 			}
 		}
 		
-	}
-	
-	/**
-	 * 
-	 * Resize the image
-	 * @param unknown_type $originalImage
-	 * @param unknown_type $toWidth
-	 * @param unknown_type $toHeight
-	 */
-	
-	function resizeImage($originalImage,$toWidth,$toHeight)
-	{
 
-	    list($width, $height) = getimagesize($originalImage);
-	    $xscale=$width/$toWidth;
-	    $yscale=$height/$toHeight;
-	
-	    if ($yscale>$xscale){
-	        $new_width = round($width * (1/$yscale));
-	        $new_height = round($height * (1/$yscale));
-	    }
-	    else {
-	        $new_width = round($width * (1/$xscale));
-	        $new_height = round($height * (1/$xscale));
-	    }
-	   
-	   
-	    $imageResized = imagecreatetruecolor($new_width, $new_height);
-	    $imageTmp     = imagecreatefromjpeg ($originalImage);
-	    imagecopyresampled($imageResized, $imageTmp, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-	
-	    return $imageResized;
-	} 
+
+		$image = new ResizeImg();
+		$image->load($imgpath); //loath the image
+		$image->resizeToWidth($width); //resize the image
+		$image->save($imgsmallpath); //save the small image
+		return $imgsmallurl; //return the small image url
+	}
 	
 	
 	function getParams($text) {
@@ -166,23 +167,10 @@ class plgContentCloudzoom extends JPlugin {
 			if (trim($tag)!="cloudzoom") {
 				$pos=strpos(trim($tag), "=");
 				$parameter=substr(trim($tag), 0, $pos);
-				$value=str_replace(array("'"), "", substr(trim($tag), $pos + 1));
+				$value=str_replace(array("\""), "", substr(trim($tag), $pos + 1));
 				$params[$parameter]=$value;
 			}
 		}
 		return $params;
 	}
-	
-	  /***************************************************************************/
-	  /* General utility													     */
-	  /* These are practical for reuse in other plugins.                         */
-	  /***************************************************************************/
-	
-	  function get_web_path($relpath) {
-	    return JURI::root(true) . ($relpath[0] != '/' ? '/' : '') . $relpath;
-	  }
-	
-	  function get_plugin_web_path($relpath) {
-	    return $this->get_web_path('/plugins/content/cloudzoom' . ($relpath[0] != '/' ? '/' : '') . $relpath);
-	  }
 }
