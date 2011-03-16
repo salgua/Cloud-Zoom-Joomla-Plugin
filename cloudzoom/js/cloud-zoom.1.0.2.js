@@ -170,7 +170,7 @@
 		We need the dummy background image as IE does not trap mouse events on
 		transparent parts of a div.
 		*/
-            $mouseTrap = jWin.parent().append(format("<div class='mousetrap' style='background-image:url(\".\");z-index:999;position:absolute;width:%0px;height:%1px;left:%2px;top:%3px;\'></div>", sImg.outerWidth(), sImg.outerHeight(), 0, 0)).find(':last');
+            $mouseTrap = jWin.parent().append(format("<div class='mousetrap' style='background-image:url(\".\");z-index:3;position:absolute;width:%0px;height:%1px;left:%2px;top:%3px;\'></div>", sImg.outerWidth(), sImg.outerHeight(), 0, 0)).find(':last');
 
             //////////////////////////////////////////////////////////////////////			
             /* Do as little as possible in mousemove event to prevent slowdown. */
@@ -248,7 +248,7 @@
                     }
                 }
 
-                zoomDiv = appendTo.append(format('<div id="cloud-zoom-big" class="cloud-zoom-big" style="display:none;position:absolute;left:%0px;top:%1px;width:%2px;height:%3px;background-image:url(\'%4\');z-index:99;"></div>', xPos, yPos, w, h, zoomImage.src)).find(':last');
+                zoomDiv = appendTo.append(format('<div id="cloud-zoom-big" class="cloud-zoom-big" style="display:none;position:absolute;left:%0px;top:%1px;width:%2px;height:%3px;background-image:url(\'%4\');z-index:2;"></div>', xPos, yPos, w, h, zoomImage.src)).find(':last');
 
                 // Add the title from title tag.
                 if (sImg.attr('title') && opts.showTitle) {
@@ -277,7 +277,7 @@
                 ch = (sImg.outerHeight() / zoomImage.height) * zoomDiv.height();
 
                 // Attach mouse, initially invisible to prevent first frame glitch
-                lens = jWin.append(format("<div class = 'cloud-zoom-lens' style='display:none;z-index:98;position:absolute;width:%0px;height:%1px;'></div>", cw, ch)).find(':last');
+                lens = jWin.append(format("<div class = 'cloud-zoom-lens' style='display:none;z-index:1;position:absolute;width:%0px;height:%1px;'></div>", cw, ch)).find(':last');
 
                 $mouseTrap.css('cursor', lens.css('cursor'));
 
@@ -347,7 +347,7 @@
                 // Wrap an outer div around the link so we can attach things without them becoming part of the link.
                 // But not if wrap already exists.
                 if ($(this).parent().attr('id') != 'wrap') {
-                    $(this).wrap('<div id="wrap" style="top:0px;z-index:9999;position:relative;"></div>');
+                    $(this).wrap('<div id="wrap" style="top:0px;z-index:4;position:relative;"></div>');
                 }
                 opts = $.extend({}, $.fn.CloudZoom.defaults, options);
                 opts = $.extend({}, opts, relOpts);
