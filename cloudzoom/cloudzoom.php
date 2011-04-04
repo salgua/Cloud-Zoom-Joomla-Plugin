@@ -37,16 +37,18 @@ class plgContentCloudzoom extends JPlugin {
 		$this->idplg=0;
 	}
 	
-/**
+	/**
 	 * Example prepare content method
 	 *
 	 * Method is called by the view
 	 *
-	 * @param 	object		The article object.  Note $article->text is also available
-	 * @param 	object		The article params
-	 * @param 	int			The 'page' number
-	 */
-	function onPrepareContent( &$article, &$params, $limitstart=0 )
+	 * @param	string	The context of the content being passed to the plugin.
+	 * @param	object	The content object.  Note $article->text is also available
+	 * @param	object	The content params
+	 * @param	int		The 'page' number
+	 * @since	1.6
+	 */ 
+	function onContentPrepare($context, &$article, &$params, $limitstart)
 	{
 		global $mainframe;
 		$document =& JFactory::getDocument();
