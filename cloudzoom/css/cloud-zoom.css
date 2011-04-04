@@ -35,4 +35,27 @@
 	border:1px solid #000;
 }
 
+/*others*/
+.zoom-desc {
+	float:left;
+	margin-left:20px;
+	width:400px;
+	margin-bottom:20px;
+
+}
+
+.zoom-small-image {
+	border:1px solid #CCC;
+	float:left;
+	margin-bottom:5px;
+}
+.zoom-gallery img {
+	border:1px solid #CCC;
+	margin:0px 20px 0px 0px;
+	
+}
+.zoom-gallery img:hover {
+	border:1px solid #B09145;		
+}
+
 

@@ -105,10 +105,10 @@ class plgContentCloudzoom extends JPlugin {
 				
 			}
 						$this->idplg++;
-						$text = "<a href='".$params['img']."' class='cloud-zoom' 
+						$text = "<div class='zoom-small-image'><a href='".$params['img']."' class='cloud-zoom' 
 						id='zoom".$this->idplg."' rel=\"".$params['rel']."\">
 						<img src='".$this->getSmallImage($params['img'],$params['width'])."' alt='' title='".$params['title']."' />
-						</a>";
+						</a></div>";
 			return $text;
 	}
 	
