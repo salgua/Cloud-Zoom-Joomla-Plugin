@@ -29,7 +29,7 @@ class plgContentCloudzoom extends JPlugin {
 	private $rel; //rel tag
 	private $bigimage; //big image
 	private $smallimage; //small image
-	private $pluginParams;
+	//private $pluginParams;
 	private $idplg;
 	function plgContentCloudzoom(&$subject, $params)
 	{
@@ -53,16 +53,16 @@ class plgContentCloudzoom extends JPlugin {
 		global $mainframe;
 		$document =& JFactory::getDocument();
 		$plugin =& JPluginHelper::getPlugin('content', 'cloudzoom');
-    	//read and set the plugin parameters
-		$pluginParams = new JParameter( $plugin->params );
-		$this->pluginParams = $pluginParams;
+    	//read and set the plugin parameters (only Joomla 1.5
+		//$pluginParams = new JParameter( $plugin->params );
+		//$this->pluginParams = $pluginParams;
 		//include jquery library if incjquery is set to true
-		$this->incjquery = (strtolower($pluginParams->get('incjquery', 1)) == 'yes');
+		$this->incjquery = strtolower($this->params->get('incjquery')) == "yes";
 		if ( $this->incjquery ) { 
 			$document->addScript(JURI::root(true).'/plugins/content/cloudzoom/js/jquery-1.3.2.min.js');   
 		}
 		//enable jquery no-conflict mode if enabled
-		$this->noconflict = (strtolower($pluginParams->get('jquerynoconflict', 1)) == '1');
+		$this->noconflict = strtolower($this->params->get('jquerynoconflict')) == "1";
 		if ($this->incjquery && $this->noconflict) {
 			$document->addScript(JURI::root(true).'/plugins/content/cloudzoom/js/no-conflict.js');
 		}
@@ -98,9 +98,9 @@ class plgContentCloudzoom extends JPlugin {
 			}
 			if (!isset($params['width']))
 			{
-				if (intval($this->pluginParams->get('width',1))>1)
+				if (intval($this->params->get('width'))>1)
 				{
-					$params['width']=$this->pluginParams->get('width',1);
+					$params['width']=$this->params->get('width');
 				} else{
 					$params['width']="150";
 				}
