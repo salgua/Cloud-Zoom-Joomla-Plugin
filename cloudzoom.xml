@@ -9,26 +9,8 @@
 <license>Licensed under the MIT License</license>
 <version>0.1</version>
 <description>
-<![CDATA[
-<div><a href="http://www.salgua.com/en/projects/salgua-cloud-zoom-joomla-plugin"><img src="/plugins/content/cloudzoom/swbox15.gif" align="left" style="padding-right: 10px;"/></a><i>You can embed a zoomable image using the following syntax in your article:</i><br/>
-<p>{cloudzoom | img="path/to/bigimage.jpg" | title="title of image" | rel="Cloud Zoom Parameters"}</p>
-<br/>
-<i>Very simple Example:</i><br/>
-<p>{cloudzoom | img="/path/to/your/image.jpg"}</p>
-<br/>
-<i>More complex Example:</i><br/>
-<p>{cloudzoom | img="/path/to/your/image.jpg" | title="Image title" | width="200" | rel="adjustX: 10, adjustY:-4, tint:'#333333'"}</p><br/>
-</div>
-<div style="color:#FF0000">
-<strong>IMPORTANT:</strong> <i>Salgua Cloud Zoom plugin will create an image with suffix "_small" of the specified width. You have to ensure that
-your web server user can write in the directory where you will put the images.</i><br/>
-</div>
-<ul>
-<li><strong>Official site with documentation:</strong><a href="http://www.salgua.com/en/projects/item/cloud-zoom">salgua.com</a></li>
-<li><strong>Cloud Zoom Parameters:</strong> <i>you can find the instructions to use the Cloud Zoom Parameter 
-visiting the official <a href="http://www.professorcloud.com/mainsite/cloud-zoom-integration.htm">Cloud Zoom Webiste</a> </i></li>
-</div>
-]]>
+You can embed a zoomable image in your article in this way: {cloudzoom | img="path/to/bigimage.jpg" | title="title of image" | rel="Cloud Zoom Parameters"}. IMPORTANT:Salgua Cloud Zoom plugin will create an image with suffix "_small" of the specified width. You have to ensure that
+your web server user can write in the directory where you will put the images. You can find the official documentatio at this url: http://www.salgua.com/en/projects/item/cloud-zoom
 </description>
 <files>
    <filename plugin="cloudzoom">cloudzoom.php</filename>
