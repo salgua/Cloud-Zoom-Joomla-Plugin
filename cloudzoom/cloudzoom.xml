@@ -25,7 +25,7 @@ your web server user can write in the directory where you will put the images.</
 <strong>IMPORTANT:</strong> <i>In !Joomla 1.6 you have to disable the article text filtering in order to use the Salgua Cloud Zoom syntax. To do this go in "Article manager"->"Options"->"Text filters" and set the filter type to "no filter" for your filter group.
 </div>
 <ul>
-<li><strong>Official site with documentation:</strong><a href="http://www.salgua.com/en/projects/salgua-cloud-zoom-joomla-plugin">salgua.com</a></li>
+<li><strong>Official site with documentation:</strong><a href="http://www.salgua.com/en/projects/item/cloud-zoom">salgua.com</a></li>
 <li><strong>Cloud Zoom Parameters:</strong> <i>you can find the instructions to use the Cloud Zoom Parameter 
 visiting the official <a href="http://www.professorcloud.com/mainsite/cloud-zoom-integration.htm">Cloud Zoom Webiste</a> </i></li>
 </div>
